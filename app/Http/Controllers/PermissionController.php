@@ -43,7 +43,11 @@ class PermissionController extends Controller
             return redirect()->route('permissions.display');
            }
     }
-    public function delete(){
-
+    public function delete($id){
+        $permissions = Permission::findOrFail($id);
+        $permissions->delete();
+        if($permissions){
+            return redirect()->route('permissions.display');
+        }
     }
 }
